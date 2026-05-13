@@ -1,262 +1,155 @@
-'use client'
+"use client"
 
-import { motion } from 'framer-motion'
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
 
-const PLACEHOLDER_IMAGES = [
-  '/images/matrix-1.jpg',
-  '/images/matrix-2.jpg',
-  '/images/matrix-3.jpg',
-  '/images/matrix-4.jpg',
-  '/images/matrix-5.jpg',
-  '/images/matrix-6.jpg',
-  '/images/matrix-7.jpg',
-  '/images/matrix-8.jpg',
+const images = [
+  { src: "/images/matrix-1.jpg", label: "Swiss International Grid" },
+  { src: "/images/matrix-2.jpg", label: "Hanzi/Kanji Glitch" },
+  { src: "/images/matrix-3.jpg", label: "Jade & Brass Schematic" },
+  { src: "/images/matrix-4.jpg", label: "Architectural Origami" },
+  { src: "/images/matrix-5.jpg", label: "Bali-Manga" },
+  { src: "/images/matrix-6.jpg", label: "8-Bit Cinematic Pixel Art" },
+  { src: "/images/matrix-7.jpg", label: "Synthwave Hieroglyphics" },
+  { src: "/images/matrix-8.jpg", label: "Giger-Biomechanical Flora" },
 ]
 
-const FEATURES = [
-  {
-    title: 'The Notion Backend',
-    description: 'A fully structured, duplicatable Notion database.',
-  },
-  {
-    title: 'Model Agnostic',
-    description: 'Exact syntax formulas for Midjourney, Stable Diffusion, and Gemini.',
-  },
-  {
-    title: 'Commercial Ready',
-    description: 'From Bauhaus graphic design to high-key lifestyle product photography.',
-  },
-]
+export default function ImagoStorefront() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
-// Moth SVG Logo Component
-const MothLogo = () => (
-  <svg
-    width="40"
-    height="40"
-    viewBox="0 0 40 40"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="text-purple-600"
-  >
-    {/* Left wing */}
-    <path
-      d="M20 8 Q15 12 14 20 Q15 28 20 32"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      fill="none"
-    />
-    {/* Right wing */}
-    <path
-      d="M20 8 Q25 12 26 20 Q25 28 20 32"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      fill="none"
-    />
-    {/* Antennae left */}
-    <path
-      d="M20 8 Q16 4 14 2"
-      stroke="currentColor"
-      strokeWidth="1"
-      fill="none"
-      strokeLinecap="round"
-    />
-    {/* Antennae right */}
-    <path
-      d="M20 8 Q24 4 26 2"
-      stroke="currentColor"
-      strokeWidth="1"
-      fill="none"
-      strokeLinecap="round"
-    />
-    {/* Body */}
-    <circle cx="20" cy="20" r="2" fill="currentColor" />
-  </svg>
-)
-
-// CTA Button Component
-const CTAButton = ({
-  label,
-  onClick,
-  variant = 'primary',
-}: {
-  label: string
-  onClick: () => void
-  variant?: 'primary' | 'secondary'
-}) => (
-  <motion.button
-    onClick={onClick}
-    whileHover={{ scale: 1.02 }}
-    whileTap={{ scale: 0.98 }}
-    className={`px-8 py-3 text-sm font-medium transition-colors ${
-      variant === 'primary'
-        ? 'bg-black text-white hover:bg-gray-900'
-        : 'border border-black text-black bg-white hover:bg-gray-50'
-    }`}
-  >
-    {label}
-  </motion.button>
-)
-
-// Image Placeholder Component
-const ImagePlaceholder = ({ src, index }: { src: string; index: number }) => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.95 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    viewport={{ once: true }}
-    transition={{ delay: index * 0.05 }}
-    className="aspect-square border border-black overflow-hidden"
-  >
-    <img
-      src={src}
-      alt={`Matrix ${index + 1}`}
-      className="w-full h-full object-cover"
-    />
-  </motion.div>
-)
-
-// Feature Card Component
-const FeatureCard = ({
-  title,
-  description,
-  index,
-}: {
-  title: string
-  description: string
-  index: number
-}) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ delay: index * 0.1 }}
-    className="text-center"
-  >
-    <h3 className="text-lg font-bold mb-3">{title}</h3>
-    <p className="text-sm text-gray-700 leading-relaxed">{description}</p>
-  </motion.div>
-)
-
-export default function Home() {
-  const handleGumroadCheckout = () => {
-    console.log('[v0] Gumroad checkout initiated')
-    // Replace with actual Gumroad link
-    window.open('https://mothpeople.gumroad.com/l/imagostudio')
-  }
-
-  const handleMoonpayCheckout = () => {
-    console.log('Moonpay checkout initiated')
-    // Replace with actual Moonpay/Hel.io link
-    window.open('https://moonpay.hel.io/pay/6a0432bdcaf1e716aeb7d296')
-  }
+  const handleGumroad = () => window.open('https://mothpeople.gumroad.com/l/imagostudio', '_blank')
+  const handleHelio = () => window.open('https://moonpay.hel.io/pay/6a0432bdcaf1e716aeb7d296', '_blank')
 
   return (
-    <main className="bg-white text-black">
-      {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center items-center px-6 md:px-12 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
+    <main className="min-h-screen bg-white text-slate-900 antialiased selection:bg-purple-100" style={{ fontFamily: "'Helvetica Neue', Helvetica, 'Calibri', Arial, sans-serif" }}>
+      
+      {/* 1. ULTRA-COMPACT BRAND HEADER */}
+      <header className="pt-6 pb-4 px-6 text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: -10 }} 
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-4xl mx-auto"
+          className="flex flex-col items-center gap-2"
         >
-          {/* Logo */}
-          <div className="flex justify-center mb-8">
-            <MothLogo />
-          </div>
-
-          {/* Brand Name */}
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">
-            Imago Studio
-          </h1>
-
-          {/* Main Headline */}
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            The Master Prompt Matrix
-          </h2>
-
-          {/* Sub-headline */}
-          <p className="text-lg md:text-xl text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto">
-            50 Model-Agnostic Prompt Architectures. Engineered for Midjourney,
-            FLUX, and LLMs. Unlock the ultimate commercial and experimental art
-            direction toolkit.
-          </p>
-
-          {/* Dual CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <CTAButton
-              label="Pay with Card - $9"
-              onClick={handleGumroadCheckout}
-              variant="primary"
-            />
-            <CTAButton
-              label="Pay with Crypto - $9"
-              onClick={handleMoonpayCheckout}
-              variant="secondary"
-            />
+          {/* Logo further reduced for maximum above-the-fold efficiency */}
+          <img src="/imago-logo.jpg" alt="Imago OS Logo" className="w-32 md:w-40 h-auto" />
+          
+          <div className="space-y-1">
+            <p className="text-[8px] tracking-[0.4em] text-slate-400 uppercase font-bold">
+              Module 01 // The 50 Formulas
+            </p>
+            <h1 className="text-xl md:text-2xl font-normal tracking-tight text-slate-900 italic">
+              The Creative Master Prompt Matrix
+            </h1>
           </div>
         </motion.div>
-      </section>
+      </header>
 
-      {/* Divider */}
-      <div className="h-px bg-black" />
-
-      {/* Proof Matrix Section */}
-      <section className="py-20 md:py-32 px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="text-xs tracking-widest uppercase text-gray-600 text-center mb-12">
-            The Proof Matrix
-          </p>
-
-          {/* Auto-scroll Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-0 md:gap-px border border-black">
-            {PLACEHOLDER_IMAGES.map((src, index) => (
-              <ImagePlaceholder key={index} src={src} index={index} />
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Divider */}
-      <div className="h-px bg-black" />
-
-      {/* Deliverable Breakdown Section */}
-      <section className="py-20 md:py-32 px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="text-xs tracking-widest uppercase text-gray-600 text-center mb-16">
-            What You Get
-          </p>
-
-          {/* 3-Column Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 max-w-5xl mx-auto">
-            {FEATURES.map((feature, index) => (
-              <FeatureCard
-                key={index}
-                title={feature.title}
-                description={feature.description}
-                index={index}
+      {/* 2. THE MASTER GRID */}
+      <section className="max-w-screen-xl mx-auto px-4 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 relative">
+          {images.map((img, i) => (
+            <motion.div
+              key={i}
+              className="relative aspect-square bg-slate-50 overflow-hidden cursor-crosshair border border-slate-100 z-10"
+              onMouseEnter={() => setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: i * 0.05 }}
+            >
+              <Image
+                src={img.src}
+                alt={img.label}
+                fill
+                className={`object-cover transition-all duration-1000 ${
+                  hoveredIndex !== null && hoveredIndex !== i ? "opacity-20 scale-95 grayscale" : "opacity-100 scale-100"
+                }`}
               />
-            ))}
-          </div>
-        </motion.div>
+              
+              <AnimatePresence>
+                {hoveredIndex === i && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 5 }}
+                    className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
+                  >
+                    <div className="bg-white/95 border border-slate-200 px-4 py-2 shadow-2xl backdrop-blur-md">
+                      <span className="text-[9px] font-mono tracking-wider text-slate-800 uppercase font-bold">
+                        {img.label}
+                      </span>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
+        </div>
+        <p className="mt-4 text-center text-[9px] text-slate-400 italic">
+          Note: All examples above were crafted using 'a multicoloured moth resting on the wall' as the main subject.
+        </p>
       </section>
 
-      {/* Divider */}
-      <div className="h-px bg-black" />
+      {/* 3. SYSTEM COPY */}
+      <section className="max-w-3xl mx-auto px-6 mb-16 space-y-10">
+        
+        <div className="space-y-2">
+          <h3 className="text-[10px] uppercase tracking-[0.2em] text-purple-600 font-bold border-b border-purple-50 pb-1 inline-block">
+            What is this?
+          </h3>
+          <p className="text-md leading-relaxed text-slate-600">
+            A repository of 50 fully customised model-agnostic image prompt architectures for creatives, powered by **Imago OS**. These are not simple keywords but modular frameworks engineered for Midjourney, FLUX, and LLMs like ChatGPT and Gemini to produce unique, high-end commercial-grade art direction for illustrations and marketing materials.
+          </p>
+        </div>
 
-      {/* Footer */}
-      <footer className="py-12 px-6 md:px-12 text-center">
-        <p className="text-sm text-gray-700 tracking-tight">
-          Imago OS © 2026. All systems operational.
+        <div className="space-y-2">
+          <h3 className="text-[10px] uppercase tracking-[0.2em] text-purple-600 font-bold border-b border-purple-50 pb-1 inline-block">
+            Whom is it for?
+          </h3>
+          <p className="text-md leading-relaxed text-slate-600">
+            Built for creative directors, scriptwriters, storyboard artists and vibe coders who need to bridge the gap between abstract storytelling and precise visual output.
+          </p>
+        </div>
+
+        <div className="space-y-2">
+          <h3 className="text-[10px] uppercase tracking-[0.2em] text-purple-600 font-bold border-b border-purple-50 pb-1 inline-block">
+            Why get this?
+          </h3>
+          <p className="text-md leading-relaxed text-slate-600">
+            Eliminate prompt drift. These formulas bypass the "AI-look", focusing on watercolour textures, minimalist high-end aesthetics, fusion styles blending eastern spirituality with digital art and cinematic narratives. Secure the creative baseline for your next major production or product brief.
+          </p>
+        </div>
+
+      </section>
+
+      {/* 4. AUTHORIZATION */}
+      <section className="max-w-xl mx-auto px-6 pb-20 text-center">
+        <div className="bg-slate-50 p-8 border border-slate-200 rounded-sm">
+          <p className="text-[9px] font-bold text-slate-400 mb-6 uppercase tracking-[0.3em]">
+            Authorize_Access // $9.00 USD
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button 
+              onClick={handleGumroad}
+              className="px-10 py-4 bg-[#1a1f2e] text-white text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-black transition-all rounded-sm shadow-md"
+            >
+              Purchase via Card
+            </button>
+            <button 
+              onClick={handleHelio}
+              className="px-10 py-4 bg-white border border-slate-200 text-slate-900 text-[10px] font-bold uppercase tracking-[0.2em] hover:border-slate-400 transition-all rounded-sm"
+            >
+              Purchase via Crypto
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. FOOTER */}
+      <footer className="py-12 border-t border-slate-50 text-center">
+        <p className="text-[9px] text-slate-300 tracking-[0.4em] uppercase font-bold">
+          © 2026 Imago OS // Engineered in Southeast Asia by Mothpeople
         </p>
       </footer>
     </main>
