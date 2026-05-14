@@ -50,7 +50,7 @@ export default function ImagoStorefront() {
               Module 01 // The 50 Formulas
             </p>
             <h1 className="text-xl md:text-2xl font-normal tracking-tight text-slate-900 italic">
-              The Creative Master Prompt Matrix
+              Imago Studio: The Creative Master Prompt Matrix
             </h1>
           </div>
         </motion.div>
