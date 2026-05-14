@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 
 const images = [
-  { src: "/images/matrix-1.jpg", label: "Swiss International Grid" },
+  { src: "/images/matrix-1.jpg", label: "Dharmic Hologram" },
   { src: "/images/matrix-2.jpg", label: "Hanzi/Kanji Glitch" },
   { src: "/images/matrix-3.jpg", label: "Jade & Brass Schematic" },
   { src: "/images/matrix-4.jpg", label: "Architectural Origami" },
@@ -13,6 +13,18 @@ const images = [
   { src: "/images/matrix-6.jpg", label: "8-Bit Cinematic Pixel Art" },
   { src: "/images/matrix-7.jpg", label: "Synthwave Hieroglyphics" },
   { src: "/images/matrix-8.jpg", label: "Giger-Biomechanical Flora" },
+  { src: "/images/matrix-9.jpg", label: "Deep Room Cinematic" },
+  { src: "/images/matrix-10.jpg", label: "Cyanotype Blueprint" },
+  { src: "/images/matrix-11.jpg", label: "Red Thread of Fate" },
+  { src: "/images/matrix-12.jpg", label: "Chiarascuro Oil Canvas" },
+  { src: "/images/matrix-13.jpg", label: "Celadon Shadow Play" },
+  { src: "/images/matrix-14.jpg", label: "High Contrast Blackwork Tattoo" },
+  { src: "/images/matrix-15.jpg", label: "Liquid Chrome Ukiyo-e" },
+  { src: "/images/matrix-16.jpg", label: "Kintsugi Porcelain" },
+  { src: "/images/matrix-17.jpg", label: "Brutalist Obsidian" },
+  { src: "/images/matrix-18.jpg", label: "Bioluminescent Apsara" },
+  { src: "/images/matrix-19.jpg", label: "Terracotta Studio Macro" },
+  { src: "/images/matrix-20.jpg", label: "Moth-Wing Macro Mosaic" },
 ]
 
 export default function ImagoStorefront() {
@@ -39,15 +51,15 @@ export default function ImagoStorefront() {
               Module 01 // The 50 Formulas
             </p>
             <h1 className="text-xl md:text-2xl font-normal tracking-tight text-slate-900 italic">
-              The Creative Master Prompt Matrix
+              Imago Studio: The Creative Master Prompt Matrix
             </h1>
           </div>
         </motion.div>
       </header>
 
-      {/* 2. THE MASTER GRID */}
+      {/* 2. THE MASTER GRID - Adjusted to 5 columns for 20 images */}
       <section className="max-w-screen-xl mx-auto px-4 mb-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 relative">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-2 relative">
           {images.map((img, i) => (
             <motion.div
               key={i}
