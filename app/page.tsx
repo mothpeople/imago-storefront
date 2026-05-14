@@ -43,7 +43,6 @@ export default function ImagoStorefront() {
           animate={{ opacity: 1, y: 0 }}
           className="flex flex-col items-center gap-2"
         >
-          {/* Logo further reduced for maximum above-the-fold efficiency */}
           <img src="/imago-logo.jpg" alt="Imago OS Logo" className="w-32 md:w-40 h-auto" />
           
           <div className="space-y-1">
@@ -51,13 +50,13 @@ export default function ImagoStorefront() {
               Module 01 // The 50 Formulas
             </p>
             <h1 className="text-xl md:text-2xl font-normal tracking-tight text-slate-900 italic">
-              Imago Studio: The Creative Master Prompt Matrix
+              The Creative Master Prompt Matrix
             </h1>
           </div>
         </motion.div>
       </header>
 
-      {/* 2. THE MASTER GRID - Adjusted to 5 columns for 20 images */}
+      {/* 2. THE MASTER GRID */}
       <section className="max-w-screen-xl mx-auto px-4 mb-12">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-2 relative">
           {images.map((img, i) => (
@@ -104,7 +103,7 @@ export default function ImagoStorefront() {
       </section>
 
       {/* 3. SYSTEM COPY */}
-      <section className="max-w-3xl mx-auto px-6 mb-16 space-y-10">
+      <section className="max-w-3xl mx-auto px-6 mb-16 space-y-12">
         
         <div className="space-y-2">
           <h3 className="text-[10px] uppercase tracking-[0.2em] text-purple-600 font-bold border-b border-purple-50 pb-1 inline-block">
@@ -117,7 +116,16 @@ export default function ImagoStorefront() {
 
         <div className="space-y-2">
           <h3 className="text-[10px] uppercase tracking-[0.2em] text-purple-600 font-bold border-b border-purple-50 pb-1 inline-block">
-            Whom is it for?
+            How does it work?
+          </h3>
+          <p className="text-md leading-relaxed text-slate-600">
+            After making payment, you will be directed to a Notion page with all 50 images. Simply duplicate the page by clicking on the &apos;duplicate&apos; option on the top of the page and insert it into your own Notion workspace. If you don&apos;t have Notion, you can simply open each image where you will find the full prompt structures and suffixes with the &quot;copy&quot; button on each column. Simply copy-paste these prompts into your workflow and replace the [Subject] and [aspect ratio] with your own.
+          </p>
+        </div>
+
+        <div className="space-y-2">
+          <h3 className="text-[10px] uppercase tracking-[0.2em] text-purple-600 font-bold border-b border-purple-50 pb-1 inline-block">
+            Who is it for?
           </h3>
           <p className="text-md leading-relaxed text-slate-600">
             Built for creative directors, scriptwriters, storyboard artists and vibe coders who need to bridge the gap between abstract storytelling and precise visual output.
@@ -129,7 +137,16 @@ export default function ImagoStorefront() {
             Why get this?
           </h3>
           <p className="text-md leading-relaxed text-slate-600">
-            Eliminate prompt drift. These formulas bypass the "AI-look", focusing on watercolour textures, minimalist high-end aesthetics, fusion styles blending eastern spirituality with digital art and cinematic narratives. Secure the creative baseline for your next major production or product brief.
+            Eliminate prompt drift. These formulas bypass the &quot;AI-look&quot;, focusing on traditional painting textures; minimalist high-end aesthetics; and deep CGI, with minimalist and fusion styles blending eastern spirituality with digital art and cinematic narratives. Secure the creative baseline for your next major production or product brief.
+          </p>
+        </div>
+
+        <div className="pt-4 border-t border-slate-100 space-y-3 text-left">
+          <p className="text-[10px] font-bold text-slate-800 leading-relaxed uppercase tracking-wider">
+            • Each Imago Studio Module comes with 50 individually distinct styles and costs $9.00 USD.
+          </p>
+          <p className="text-[10px] font-bold text-slate-800 leading-relaxed uppercase tracking-wider">
+            • Module 2 // The 50 Characters comes next, purely for character design and most useful for storyboard artists and art directors.
           </p>
         </div>
 
@@ -139,7 +156,7 @@ export default function ImagoStorefront() {
       <section className="max-w-xl mx-auto px-6 pb-20 text-center">
         <div className="bg-slate-50 p-8 border border-slate-200 rounded-sm">
           <p className="text-[9px] font-bold text-slate-400 mb-6 uppercase tracking-[0.3em]">
-            Authorize_Access // $9.00 USD
+            Authorise_Access // $9.00 USD
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
@@ -161,7 +178,7 @@ export default function ImagoStorefront() {
       {/* 5. FOOTER */}
       <footer className="py-12 border-t border-slate-50 text-center">
         <p className="text-[9px] text-slate-300 tracking-[0.4em] uppercase font-bold">
-          © 2026 Imago OS // Engineered in Southeast Asia by Mothpeople
+          © 2026 Imago OS // Engineered by Mothpeople
         </p>
       </footer>
     </main>
