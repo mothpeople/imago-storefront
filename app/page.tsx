@@ -51,14 +51,14 @@ const module2Images = [
   { src: "/images/matrix-40.jpg", label: "Mid-Century Editorial Cartoon" },
 ]
 
-// Product details
+// Product details (PRESERVED ALL YOUR LIVE LINKS)
 const PRODUCTS = {
   m1: { id: "m1", name: "Module 01: The 50 Formulas", price: 9.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagostudio", urlHelio: "https://moonpay.hel.io/pay/6a0432bdcaf1e716aeb7d296" },
   m2: { id: "m2", name: "Module 02: The 50 Characters", price: 9.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagostudio2", urlHelio: "https://moonpay.hel.io/x/imagostudio2" },
   bundle: { id: "bundle", name: "Imago Studio: Bundle (Modules 01 & 02)", price: 15.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagostudiob1", urlHelio: "https://moonpay.hel.io/x/imagostudiob1" }
 }
 
-// Global dynamic copy configuration
+// Global dynamic copy configuration (PRESERVED ALL YOUR CUSTOM COPY)
 const SYSTEM_COPY = {
   m1: {
     subtitle: "Module 01 // The 50 Formulas",
@@ -73,7 +73,7 @@ const SYSTEM_COPY = {
   },
   m2: {
     subtitle: "Module 02 // The 50 Characters",
-    title: "Imago Studio: The Character Prompt Matrix",
+    title: "The Character Prompt Matrix",
     gridNote: "Note: All examples above were crafted using a reference image of a boy as the main subject and prompted into a 3-panel layout.",
     whatIsThis: "A repository of 50 fully customised model-agnostic image prompt architectures for character design, powered by Imago OS. These are not simple keywords but modular frameworks engineered for Midjourney, FLUX, and LLMs like ChatGPT and Gemini to produce unique, high-end character concepts for storyboard illustrations, digital storytelling and marketing pitches.",
     howDoesItWork: "After making payment, you will be directed to a Notion page with all 50 images. Simply duplicate the page by clicking on the 'duplicate' option on the top of the page and insert it into your own Notion workspace. If you don't have Notion, you can simply open each image where you will find the full prompt structures and suffixes with the \"copy\" button on each column. Simply copy-paste these prompts into your workflow and replace the [Subject] and [aspect ratio] with your own.",
@@ -211,13 +211,15 @@ export default function App() {
         </div>
       </section>
 
-      {/* 3. THE MASTER GRID */}
+      {/* 3. THE MASTER GRID (DYNAMIC ASPECT RATIO FIX COMPLETED) */}
       <section className="max-w-screen-xl mx-auto px-4 mb-12 mt-6">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-2 relative">
           {imagesToDisplay.map((img, i) => (
             <motion.div
               key={`${activeTab}-${i}`}
-              className="relative aspect-square bg-slate-50 overflow-hidden cursor-crosshair border border-slate-100 z-10"
+              className={`relative bg-slate-50 overflow-hidden cursor-crosshair border border-slate-100 z-10 transition-all duration-300 ${
+                activeTab === "m1" ? "aspect-square" : "aspect-[16/9]"
+              }`}
               onMouseEnter={() => setHoveredIndex(i)}
               onMouseLeave={() => setHoveredIndex(null)}
               initial={{ opacity: 0 }}
