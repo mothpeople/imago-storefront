@@ -51,14 +51,14 @@ const module2Images = [
   { src: "/images/matrix-40.jpg", label: "Mid-Century Editorial Cartoon" },
 ]
 
-// Product details (PRESERVED ALL YOUR LIVE LINKS)
+// Product details
 const PRODUCTS = {
   m1: { id: "m1", name: "Module 01: The 50 Formulas", price: 9.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagostudio", urlHelio: "https://moonpay.hel.io/pay/6a0432bdcaf1e716aeb7d296" },
   m2: { id: "m2", name: "Module 02: The 50 Characters", price: 9.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagostudio2", urlHelio: "https://moonpay.hel.io/x/imagostudio2" },
   bundle: { id: "bundle", name: "Imago Studio: Bundle (Modules 01 & 02)", price: 15.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagostudiob1", urlHelio: "https://moonpay.hel.io/x/imagostudiob1" }
 }
 
-// Global dynamic copy configuration (PRESERVED ALL YOUR CUSTOM COPY)
+// Global dynamic copy configuration
 const SYSTEM_COPY = {
   m1: {
     subtitle: "Module 01 // The 50 Formulas",
@@ -183,27 +183,38 @@ export default function App() {
         </motion.div>
       </header>
 
-      {/* 2. TAB SYSTEM */}
+      {/* 2. TAB SYSTEM (SYMMETRICAL GRID ALIGNMENT COMPLETED) */}
       <section className="max-w-screen-xl mx-auto px-4 pt-6 pb-2">
-        <div className="flex justify-center border-b border-slate-100">
+        <div className="flex justify-center border-b border-slate-100 max-w-md mx-auto">
           <button 
             onClick={() => { setActiveTab("m1"); setHoveredIndex(null); }}
-            className={`px-6 py-3 text-[10px] font-bold uppercase tracking-[0.2em] transition-all relative ${
-              activeTab === "m1" ? "text-slate-900 font-extrabold" : "text-slate-400 hover:text-slate-600"
-            }`}
+            className="flex-1 py-3 px-2 text-center transition-all relative flex flex-col items-center justify-center gap-0.5"
           >
-            Module 01 // The 50 Formulas
+            <span className="text-[7px] md:text-[8px] tracking-[0.2em] uppercase font-mono text-slate-400">
+              Module 01
+            </span>
+            <span className={`text-[9px] md:text-[10px] uppercase tracking-[0.1em] md:tracking-[0.2em] transition-colors duration-200 ${
+              activeTab === "m1" ? "text-slate-900 font-bold" : "text-slate-400 hover:text-slate-600 font-normal"
+            }`}>
+              The 50 Formulas
+            </span>
             {activeTab === "m1" && (
               <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-slate-950" />
             )}
           </button>
+          
           <button 
             onClick={() => { setActiveTab("m2"); setHoveredIndex(null); }}
-            className={`px-6 py-3 text-[10px] font-bold uppercase tracking-[0.2em] transition-all relative ${
-              activeTab === "m2" ? "text-slate-900 font-extrabold" : "text-slate-400 hover:text-slate-600"
-            }`}
+            className="flex-1 py-3 px-2 text-center transition-all relative flex flex-col items-center justify-center gap-0.5"
           >
-            Module 02 // The 50 Characters
+            <span className="text-[7px] md:text-[8px] tracking-[0.2em] uppercase font-mono text-slate-400">
+              Module 02
+            </span>
+            <span className={`text-[9px] md:text-[10px] uppercase tracking-[0.1em] md:tracking-[0.2em] transition-colors duration-200 ${
+              activeTab === "m2" ? "text-slate-900 font-bold" : "text-slate-400 hover:text-slate-600 font-normal"
+            }`}>
+              The 50 Characters
+            </span>
             {activeTab === "m2" && (
               <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-slate-950" />
             )}
@@ -211,7 +222,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* 3. THE MASTER GRID (DYNAMIC ASPECT RATIO FIX COMPLETED) */}
+      {/* 3. THE MASTER GRID */}
       <section className="max-w-screen-xl mx-auto px-4 mb-12 mt-6">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-2 relative">
           {imagesToDisplay.map((img, i) => (
