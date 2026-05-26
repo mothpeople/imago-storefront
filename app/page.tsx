@@ -51,11 +51,36 @@ const module2Images = [
   { src: "/images/matrix-40.jpg", label: "Mid-Century Editorial Cartoon" },
 ]
 
+const module3Images = [
+  { src: "/images/matrix-41.jpg", label: "Extreme Close-Up (ECU)" },
+  { src: "/images/matrix-42.jpg", label: "Close-Up (CU)" },
+  { src: "/images/matrix-43.jpg", label: "Medium Close-Up (MCU)" },
+  { src: "/images/matrix-44.jpg", label: "Medium Shot (MS)" },
+  { src: "/images/matrix-45.jpg", label: "The Cowboy Shot (Medium Full)" },
+  { src: "/images/matrix-46.jpg", label: "Low Angle (The Hero Shot)" },
+  { src: "/images/matrix-47.jpg", label: "The God's Eye (Top-Down Overhead)" },
+  { src: "/images/matrix-48.jpg", label: "The Dutch Angle (Canted)" },
+  { src: "/images/matrix-49.jpg", label: "The Clean Profile (90-Degree Side)" },
+  { src: "/images/matrix-50.jpg", label: "The Reflection Composition" },
+  { src: "/images/matrix-51.jpg", label: "RED Monstro 8K (The Commercial Look)" },
+  { src: "/images/matrix-52.jpg", label: "Panavision Anamorphic (The Sci-Fi Flare)" },
+  { src: "/images/matrix-53.jpg", label: "Vintage Super 8mm (The Home Movie)" },
+  { src: "/images/matrix-54.jpg", label: "CCTV Security Camera (The Surveillance)" },
+  { src: "/images/matrix-55.jpg", label: "The Whip Pan (Swish Pan)" },
+  { src: "/images/matrix-56.jpg", label: "Phantom Flex High-Speed (Slow Motion)" },
+  { src: "/images/matrix-57.jpg", label: "The Rack Focus (Foreground to Background)" },
+  { src: "/images/matrix-58.jpg", label: "The Split-Diopter" },
+  { src: "/images/matrix-59.jpg", label: "The Fisheye Lens" },
+  { src: "/images/matrix-60.jpg", label: "The Kaleidoscope Filter" },
+]
+
 // Product details
 const PRODUCTS = {
   m1: { id: "m1", name: "Module 01: The 50 Formulas", price: 9.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagostudio", urlHelio: "https://moonpay.hel.io/pay/6a0432bdcaf1e716aeb7d296" },
   m2: { id: "m2", name: "Module 02: The 50 Characters", price: 9.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagostudio2", urlHelio: "https://moonpay.hel.io/x/imagostudio2" },
-  bundle: { id: "bundle", name: "Imago Studio: Bundle (Modules 01 & 02)", price: 15.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagostudiob1", urlHelio: "https://moonpay.hel.io/x/imagostudiob1" }
+  m3: { id: "m3", name: "Module 03: The 50 Shots", price: 9.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagostudio3", urlHelio: "https://moonpay.hel.io/pay/6a15925b76ea29fbb59f1cda" },
+  bundle_two: { id: "bundle_two", name: "Imago Studio: Two Module Bundle", price: 15.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagostudiob1", urlHelio: "https://moonpay.hel.io/x/imagostudiob1" },
+  bundle_three: { id: "bundle_three", name: "Imago Studio: The Master Collection", price: 20.00, urlGumroad: "https://mothpeople.gumroad.com/l/masterbundle", urlHelio: "https://moonpay.hel.io/pay/6a159803ffcf3c4d1a850b52" }
 }
 
 // Global dynamic copy configuration
@@ -81,13 +106,24 @@ const SYSTEM_COPY = {
     whyGetThis: "Eliminate prompt drift. These formulas bypass the \"AI-look\", focusing on traditional painting textures; minimalist high-end aesthetics; and deep CGI, with minimalist and fusion styles blending eastern spirituality with digital art and cinematic narratives. Secure the creative baseline for your next major production or product brief.",
     bullet1: "Each Imago Studio Module comes with 50 individually distinct styles and costs $9.00 USD.",
     bullet2: "Module 3 // The 50 Shots comes next, purely for filmmakers, cinematographers and editors working on AI videos and films"
+  },
+  m3: {
+    subtitle: "Module 03 // The 50 Shots",
+    title: "The Cinematography Prompt Matrix",
+    gridNote: "Note: All examples above were crafted using a single reference image of a character as the base and prompted into a 16:9 cinematic aspect ratio.",
+    whatIsThis: "A repository of 50 fully customised model-agnostic image prompt architectures for creative professionals and artists using AI workflows, powered by Imago OS. These are not simple keywords but modular frameworks engineered for Midjourney, FLUX, and LLMs like ChatGPT and Gemini to produce unique, industry standard, high-quality shots for AI-generated films, storyboard illustrations, digital storytelling and marketing pitches.",
+    howDoesItWork: "After making payment, you will be directed to a Notion page with all 50 images. Simply duplicate the page by clicking on the 'duplicate' option on the top of the page and insert it into your own Notion workspace. If you don't have Notion, you can simply open each image where you will find the full prompt structures and suffixes with the \"copy\" button on each column. Simply copy-paste these prompts into your workflow and replace the [Subject] and [aspect ratio] with your own.",
+    whoIsItFor: "Built for filmmakers, cinematographers, photographers, storyboard artists and creative professionals planning shot lists or making an AI-generated film who need to bridge the gap between abstract storytelling and precise visual output.",
+    whyGetThis: "Eliminate prompt drift. These industry-standard shot sizes, camera angles, lenses and hardware emulators bypass the \"AI-look\", focusing on hyperrealistic shots and angles that capture the subject's emotions and movements, and they're optimised for video generators for camera movements, ranging from simple tracking to SnorriCam shots. Secure the creative baseline for your next major production or product brief.",
+    bullet1: "Each Imago Studio Module comes with 50 individually distinct styles and costs $9.00 USD.",
+    bullet2: "Module 4 // The 50 Traditions comes next, an entire module dedicated to the rich cultures and traditions of Southeast Asia, made for art directors and designers."
   }
 }
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<"m1" | "m2">("m1")
+  const [activeTab, setActiveTab] = useState<"m1" | "m2" | "m3">("m1")
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-  const [cart, setCart] = useState<{ [key: string]: boolean }>({ m1: false, m2: false })
+  const [cart, setCart] = useState<{ [key: string]: boolean }>({ m1: false, m2: false, m3: false })
   const [isCartOpen, setIsCartOpen] = useState(false)
 
   // Load cart state from localStorage if available
@@ -107,7 +143,7 @@ export default function App() {
     localStorage.setItem("imago_cart", JSON.stringify(newCart))
   }
 
-  const toggleCartItem = (productId: "m1" | "m2") => {
+  const toggleCartItem = (productId: "m1" | "m2" | "m3") => {
     const newCart = { ...cart, [productId]: !cart[productId] }
     saveCart(newCart)
     if (!cart[productId]) {
@@ -121,25 +157,34 @@ export default function App() {
 
   const getCartTotal = () => {
     const count = getCartCount()
-    if (count === 2) return PRODUCTS.bundle.price
+    if (count === 3) return PRODUCTS.bundle_three.price
+    if (count === 2) return PRODUCTS.bundle_two.price
     let total = 0
     if (cart.m1) total += PRODUCTS.m1.price
     if (cart.m2) total += PRODUCTS.m2.price
+    if (cart.m3) total += PRODUCTS.m3.price
     return total
   }
 
   const handleCheckout = (paymentType: "card" | "crypto") => {
     const count = getCartCount()
-    if (count === 2) {
-      window.open(paymentType === "card" ? PRODUCTS.bundle.urlGumroad : PRODUCTS.bundle.urlHelio, "_blank")
+    
+    // Logic for routing based on cart contents
+    if (count === 3) {
+      window.open(paymentType === "card" ? PRODUCTS.bundle_three.urlGumroad : PRODUCTS.bundle_three.urlHelio, "_blank")
+    } else if (count === 2) {
+      // NOTE: You can create a universal 2-module bundle link, or default to the existing M1+M2 bundle link
+      window.open(paymentType === "card" ? PRODUCTS.bundle_two.urlGumroad : PRODUCTS.bundle_two.urlHelio, "_blank")
     } else if (cart.m1) {
       window.open(paymentType === "card" ? PRODUCTS.m1.urlGumroad : PRODUCTS.m1.urlHelio, "_blank")
     } else if (cart.m2) {
       window.open(paymentType === "card" ? PRODUCTS.m2.urlGumroad : PRODUCTS.m2.urlHelio, "_blank")
+    } else if (cart.m3) {
+      window.open(paymentType === "card" ? PRODUCTS.m3.urlGumroad : PRODUCTS.m3.urlHelio, "_blank")
     }
   }
 
-  const imagesToDisplay = activeTab === "m1" ? module1Images : module2Images
+  const imagesToDisplay = activeTab === "m1" ? module1Images : activeTab === "m2" ? module2Images : module3Images
   const currentCopy = SYSTEM_COPY[activeTab]
 
   return (
@@ -183,9 +228,10 @@ export default function App() {
         </motion.div>
       </header>
 
-      {/* 2. TAB SYSTEM (SYMMETRICAL GRID ALIGNMENT COMPLETED) */}
+      {/* 2. TAB SYSTEM (UPDATED TO 3 TABS) */}
       <section className="max-w-screen-xl mx-auto px-4 pt-6 pb-2">
-        <div className="flex justify-center border-b border-slate-100 max-w-md mx-auto">
+        <div className="flex justify-center border-b border-slate-100 max-w-2xl mx-auto">
+          
           <button 
             onClick={() => { setActiveTab("m1"); setHoveredIndex(null); }}
             className="flex-1 py-3 px-2 text-center transition-all relative flex flex-col items-center justify-center gap-0.5"
@@ -219,6 +265,24 @@ export default function App() {
               <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-slate-950" />
             )}
           </button>
+
+          <button 
+            onClick={() => { setActiveTab("m3"); setHoveredIndex(null); }}
+            className="flex-1 py-3 px-2 text-center transition-all relative flex flex-col items-center justify-center gap-0.5"
+          >
+            <span className="text-[7px] md:text-[8px] tracking-[0.2em] uppercase font-mono text-slate-400">
+              Module 03
+            </span>
+            <span className={`text-[9px] md:text-[10px] uppercase tracking-[0.1em] md:tracking-[0.2em] transition-colors duration-200 ${
+              activeTab === "m3" ? "text-slate-900 font-bold" : "text-slate-400 hover:text-slate-600 font-normal"
+            }`}>
+              The 50 Shots
+            </span>
+            {activeTab === "m3" && (
+              <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-slate-950" />
+            )}
+          </button>
+
         </div>
       </section>
 
@@ -255,7 +319,7 @@ export default function App() {
                     className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
                   >
                     <div className="bg-white/95 border border-slate-200 px-4 py-2 shadow-2xl backdrop-blur-md">
-                      <span className="text-[9px] font-mono tracking-wider text-slate-800 uppercase font-bold">
+                      <span className="text-[9px] font-mono tracking-wider text-slate-800 uppercase font-bold text-center">
                         {img.label}
                       </span>
                     </div>
@@ -360,6 +424,22 @@ export default function App() {
                 }`}>{cart.m2 && "✓"}</span>
               </div>
             </div>
+
+            {/* MODULE 3 CARD */}
+            <div className={`p-4 border transition-all flex justify-between items-center rounded-sm bg-white cursor-pointer ${
+              cart.m3 ? "border-purple-600 shadow-sm" : "border-slate-200 hover:border-slate-300"
+            }`} onClick={() => toggleCartItem("m3")}>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-800">Module 03 // The 50 Shots</p>
+                <p className="text-[9px] text-slate-400 mt-0.5">Camera Specs, Lenses & Cinematic Physics</p>
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="text-[10px] font-mono font-bold">$9.00</span>
+                <span className={`w-4 h-4 border rounded-full flex items-center justify-center text-[9px] ${
+                  cart.m3 ? "bg-purple-600 border-purple-600 text-white font-bold" : "border-slate-300"
+                }`}>{cart.m3 && "✓"}</span>
+              </div>
+            </div>
           </div>
 
           <button 
@@ -438,7 +518,20 @@ export default function App() {
                       </div>
                     )}
 
-                    {/* UPSOLD BUNDLE RECOGNITION */}
+                    {cart.m3 && (
+                      <div className="p-4 border border-slate-100 bg-slate-50 flex justify-between items-center rounded-sm">
+                        <div>
+                          <p className="text-[10px] font-bold uppercase tracking-wide text-slate-800">Module 03 // The 50 Shots</p>
+                          <p className="text-[9px] text-slate-400">Card/Crypto Access</p>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          <span className="text-[10px] font-mono font-bold">$9.00</span>
+                          <button onClick={() => toggleCartItem("m3")} className="text-[9px] text-red-500 font-bold hover:underline">Remove</button>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* DYNAMIC BUNDLE RECOGNITION */}
                     {getCartCount() === 2 && (
                       <motion.div 
                         initial={{ opacity: 0, y: 10 }}
@@ -446,10 +539,23 @@ export default function App() {
                         className="p-4 border border-purple-100 bg-purple-50/50 flex justify-between items-center rounded-sm"
                       >
                         <div>
-                          <p className="text-[10px] font-bold uppercase tracking-wide text-purple-600">Bundle Override Applied</p>
-                          <p className="text-[9px] text-purple-500">Auto-calculated dual-module discount</p>
+                          <p className="text-[10px] font-bold uppercase tracking-wide text-purple-600">Dual-Module Bundle Applied</p>
+                          <p className="text-[9px] text-purple-500">Auto-calculated combination discount</p>
                         </div>
                         <span className="text-[10px] font-mono font-bold text-purple-600">-$3.00 USD</span>
+                      </motion.div>
+                    )}
+                    {getCartCount() === 3 && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="p-4 border border-green-100 bg-green-50/50 flex justify-between items-center rounded-sm"
+                      >
+                        <div>
+                          <p className="text-[10px] font-bold uppercase tracking-wide text-green-700">Master Collection Override</p>
+                          <p className="text-[9px] text-green-600">Maximum tier discount applied</p>
+                        </div>
+                        <span className="text-[10px] font-mono font-bold text-green-700">-$7.00 USD</span>
                       </motion.div>
                     )}
                   </>
