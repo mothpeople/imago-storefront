@@ -74,12 +74,18 @@ const module3Images = [
   { src: "/images/matrix-60.jpg", label: "The Kaleidoscope Filter" },
 ]
 
-// Product details
+// Product details (ALL LIVE LINKS INTEGRATED)
 const PRODUCTS = {
   m1: { id: "m1", name: "Module 01: The 50 Formulas", price: 9.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagostudio", urlHelio: "https://moonpay.hel.io/pay/6a0432bdcaf1e716aeb7d296" },
   m2: { id: "m2", name: "Module 02: The 50 Characters", price: 9.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagostudio2", urlHelio: "https://moonpay.hel.io/x/imagostudio2" },
   m3: { id: "m3", name: "Module 03: The 50 Shots", price: 9.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagostudio3", urlHelio: "https://moonpay.hel.io/pay/6a15925b76ea29fbb59f1cda" },
-  bundle_two: { id: "bundle_two", name: "Imago Studio: Two Module Bundle", price: 15.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagostudiob1", urlHelio: "https://moonpay.hel.io/x/imagostudiob1" },
+  
+  // Explicit 2-Module Combinations
+  bundle_1_2: { id: "bundle_1_2", name: "Imago Studio: Modules 01 & 02", price: 15.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagostudiob1", urlHelio: "https://moonpay.hel.io/x/imagostudiob1" },
+  bundle_1_3: { id: "bundle_1_3", name: "Imago Studio: Modules 01 & 03", price: 15.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagobundle2", urlHelio: "https://moonpay.hel.io/pay/6a15bac64987ecb8837a349f" },
+  bundle_2_3: { id: "bundle_2_3", name: "Imago Studio: Modules 02 & 03", price: 15.00, urlGumroad: "https://mothpeople.gumroad.com/l/imagobundle3", urlHelio: "https://moonpay.hel.io/pay/6a15bbb99184cd91c53e90aa" },
+  
+  // Master Bundle
   bundle_three: { id: "bundle_three", name: "Imago Studio: The Master Collection", price: 20.00, urlGumroad: "https://mothpeople.gumroad.com/l/masterbundle", urlHelio: "https://moonpay.hel.io/pay/6a159803ffcf3c4d1a850b52" }
 }
 
@@ -158,7 +164,7 @@ export default function App() {
   const getCartTotal = () => {
     const count = getCartCount()
     if (count === 3) return PRODUCTS.bundle_three.price
-    if (count === 2) return PRODUCTS.bundle_two.price
+    if (count === 2) return 15.00 // Standardize 2-module price
     let total = 0
     if (cart.m1) total += PRODUCTS.m1.price
     if (cart.m2) total += PRODUCTS.m2.price
@@ -169,18 +175,27 @@ export default function App() {
   const handleCheckout = (paymentType: "card" | "crypto") => {
     const count = getCartCount()
     
-    // Logic for routing based on cart contents
     if (count === 3) {
+      // 3-Module Master Bundle
       window.open(paymentType === "card" ? PRODUCTS.bundle_three.urlGumroad : PRODUCTS.bundle_three.urlHelio, "_blank")
     } else if (count === 2) {
-      // NOTE: You can create a universal 2-module bundle link, or default to the existing M1+M2 bundle link
-      window.open(paymentType === "card" ? PRODUCTS.bundle_two.urlGumroad : PRODUCTS.bundle_two.urlHelio, "_blank")
-    } else if (cart.m1) {
-      window.open(paymentType === "card" ? PRODUCTS.m1.urlGumroad : PRODUCTS.m1.urlHelio, "_blank")
-    } else if (cart.m2) {
-      window.open(paymentType === "card" ? PRODUCTS.m2.urlGumroad : PRODUCTS.m2.urlHelio, "_blank")
-    } else if (cart.m3) {
-      window.open(paymentType === "card" ? PRODUCTS.m3.urlGumroad : PRODUCTS.m3.urlHelio, "_blank")
+      // Explicit 2-Module Routing Logic
+      if (cart.m1 && cart.m2) {
+        window.open(paymentType === "card" ? PRODUCTS.bundle_1_2.urlGumroad : PRODUCTS.bundle_1_2.urlHelio, "_blank")
+      } else if (cart.m1 && cart.m3) {
+        window.open(paymentType === "card" ? PRODUCTS.bundle_1_3.urlGumroad : PRODUCTS.bundle_1_3.urlHelio, "_blank")
+      } else if (cart.m2 && cart.m3) {
+        window.open(paymentType === "card" ? PRODUCTS.bundle_2_3.urlGumroad : PRODUCTS.bundle_2_3.urlHelio, "_blank")
+      }
+    } else {
+      // Single Module Routing
+      if (cart.m1) {
+        window.open(paymentType === "card" ? PRODUCTS.m1.urlGumroad : PRODUCTS.m1.urlHelio, "_blank")
+      } else if (cart.m2) {
+        window.open(paymentType === "card" ? PRODUCTS.m2.urlGumroad : PRODUCTS.m2.urlHelio, "_blank")
+      } else if (cart.m3) {
+        window.open(paymentType === "card" ? PRODUCTS.m3.urlGumroad : PRODUCTS.m3.urlHelio, "_blank")
+      }
     }
   }
 
@@ -228,7 +243,7 @@ export default function App() {
         </motion.div>
       </header>
 
-      {/* 2. TAB SYSTEM (UPDATED TO 3 TABS) */}
+      {/* 2. TAB SYSTEM */}
       <section className="max-w-screen-xl mx-auto px-4 pt-6 pb-2">
         <div className="flex justify-center border-b border-slate-100 max-w-2xl mx-auto">
           
